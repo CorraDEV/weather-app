@@ -13,7 +13,7 @@ async function getForecast(cityName){
     cityForecastDiv.textContent = cityName;
     cityForecastDiv.id = "city-name-div";    
     
-    if(sendBtn.nextElementSibling.id === cityForecastDiv.id){
+    if(sendBtn.nextElementSibling.id === "city-name-div"){
         sendBtn.nextElementSibling.remove();        
     }    
 
