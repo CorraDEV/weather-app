@@ -3,15 +3,15 @@ const sendBtn = document.querySelector('#send-btn');
 async function getForecast(cityName){
     const key = "1e88068dba9f4d54b34155723242904";
     const days = 3;
-    const url = `http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${cityName}&days=${days}`;
+    const url = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${cityName}&days=${days}`;    
     const response = await fetch(url,{mode: 'cors'});    
     const obj = await response.json();
     const forecasts = obj.forecast.forecastday;    
     
-    const cityNameDiv = document.querySelector('#city-name');
+    const sendBtn = document.querySelector('#send-btn');
     const cityForecastDiv = document.createElement("div");
     cityForecastDiv.textContent = cityName;
-    cityNameDiv.after(cityForecastDiv);
+    sendBtn.after(cityForecastDiv);
 
     let day = 1;
     for(const forecast of forecasts){
