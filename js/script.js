@@ -11,7 +11,21 @@ async function getForecast(cityName){
     const sendBtn = document.querySelector('#send-btn');
     const cityForecastDiv = document.createElement("div");
     cityForecastDiv.textContent = cityName;
+    cityForecastDiv.id = "city-name-div";    
+    
+    if(sendBtn.nextElementSibling.id === cityForecastDiv.id){
+        sendBtn.nextElementSibling.remove();        
+    }    
+
     sendBtn.after(cityForecastDiv);
+    
+    const dailyForecastDivs = document.querySelectorAll('.dailyForecast');
+
+    if(dailyForecastDivs.length > 0){
+        for(let i = 0; i < dailyForecastDivs.length; i++){
+            dailyForecastDivs[i].remove();
+        }
+    }    
 
     let day = 1;
     for(const forecast of forecasts){
@@ -27,10 +41,10 @@ async function getForecast(cityName){
         if(document.querySelectorAll('.dailyForecast').length == 0){
             cityForecastDiv.after(dailyForecastDiv);
         }
-        else{
+        else{            
             const dailyForecastDivs = document.querySelectorAll('.dailyForecast');
-            const size = dailyForecastDivs.length;
-            dailyForecastDivs[size - 1].after(dailyForecastDiv);
+            const size = dailyForecastDivs.length;            
+            dailyForecastDivs[size - 1].after(dailyForecastDiv);            
         }
 
         day++;
